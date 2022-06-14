@@ -6,86 +6,36 @@
   <h3 align="center">Neural interval-censored Cox regression with feature selection</h3>
 
   <p align="center">
-    Fall/Herbst-semester 2021 at UZH
+    Carlos García, Marcos Matabuena and Michael R. Kosorok
     <br>
    
   </p>
 </p>
 
-# Link to exercise 1b
+# Abstract
 
-<https://github.com/garcia-mc/stagentra/tree/main/ex1b>
+The classical Cox model emerged in 1972 promoting breakthroughs in how patient prognosis is quantified using time-to-event analysis in biomedicine. One of the most useful characteristics of the
+model for practitioners is the interpretability of the variables in the analysis. However, this comes at the price of introducing strong assumptions concerning the functional form of the regression model. To break this gap, this paper aims to exploit the explainability advantages of the classical
+Cox model in the setting of interval-censoring using a new Lasso neural network that simultaneously selects the most relevant variables while quantifying non-linear relations
+between predictors and survival times. The gain of the new method is illustrated empirically in an extensive simulation study with examples that involve linear and non-linear ground dependencies. We also demonstrate the performance of our strategy in the analysis of physiological, clinical and accelerometer data from the NHANES 2003-2006 waves to predict the effect of physical activity on the survival of patients. Our method outperforms the prior results in the literature that use the traditional Cox model.
 
-
-# Link to exercise 2b (pending pull request)
-
-<https://github.com/garcia-mc/cirseq>
-
-# Course repo 
-
-<https://github.com/sta426hs2021/material>
-
-# Cloning and branching 
+# Launch in Euler cluster of ETH
 
 
 ```{bash}
-cd ~/repodir
-git clone https://github.com/garcia-mc/stagentra.git
+scp -r garciac@euler.ethz.ch:intervalassox /intervalassox
+ssh garciac@euler.ethz.ch
 
-cd stagentra
-git status
-git log
+conda activate rpy2-env
 
-git branch lecture-notes
-git branch # check in which branch are we 
+cd intervalassox
 
-git checkout lecture-notes #change to another branch 
+rm -r results
 
-git add lec1.md
-git commit -m "new md file added"
-git push 
+mkdir results
 
+bsub -n 24 -W 12:00 -o /output.txt 'python aaa.py'
+
+cd ..
 
 ```
-# Merging
-
-
-
-```{bash}
-git checkout main
-git merge lecture-notes
-git push
-
-```
-
-# Link to 1st week lecture
-
-<https://tube.switch.ch/channels/RWOtNGIrWT>
-
-# Ideas from first week lecture
-
-- Statistical evidence involves magnitude of change / variability
-
-**In addition**
-- [Spearman correlation](#Spearman-correlation])
-- [Boxplots facts](#Boxplots)
-- [Rstudio and git](#Rstudio)
-
-
-## Spearman correlation
-- https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient 
-- Measures monotonicity 
-- More sensitive than Pearson to outliers bc Spearman only depends on ranks (drops data)
-
-## Boxplots
-- Can look similar if one is taken from an unimodal distribution and the other from bimodal
-- Can look different when sample size is small even when underlying dist is the same
-- They do not show density 
-
-## Rstudio
-- New project > version control > git 
-
-
-# Important
-
-This is inspired on the template <https://github.com/Ismaestro/markdown-template> 
